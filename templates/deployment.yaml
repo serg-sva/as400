@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "as400-rpc.fullname" . }}
+  name: {{ include "as400rpc.fullname" . }}
   labels:
-    {{- include "as400-rpc.labels" . | nindent 4 }}
+    {{- include "as400rpc.labels" . | nindent 4 }}
 spec:
 {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
 {{- end }}
   selector:
     matchLabels:
-      {{- include "as400-rpc.selectorLabels" . | nindent 6 }}
+      {{- include "as400rpc.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       annotations:
@@ -19,27 +19,26 @@ spec:
     {{- end }}
         timestamp: "{{ date "20060102150405" .Release.Time }}"
       labels:
-        component: {{ include "as400-rpc.fullname" . }}
-        {{- include "as400-rpc.selectorLabels" . | nindent 8 }}
+        {{- include "as400rpc.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "as400-rpc.serviceAccountName" . }}
+      serviceAccountName: {{ include "as400rpc.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: {{ .Values.image.image }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
           - secretRef:
-              name: {{ include "as400-rpc.envSecretName" . }}
+              name: {{ include "as400rpc.envSecretName" . }}
           ports:
-            - name: http
+            - name: as400rpc-port 
               containerPort: 8080
               protocol: TCP
           resources:

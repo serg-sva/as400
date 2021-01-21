@@ -6,13 +6,13 @@ metadata:
     capabilities: Basic Install
     operators.operatorframework.io/builder: operator-sdk-v1.0.0
     operators.operatorframework.io/project_layout: helm.sdk.operatorframework.io/v1
-  name: 1.vX.Y.Z
+  name: as400rpc-operator.vX.Y.Z
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
   customresourcedefinitions: {}
-  description: OpenLegacy no-code application that allows simple configuration-based integration to AS/400 systems.
-  displayName: as400-rpc-operator
+  description: no-code application that allows simple configuration-based integration to AS/400 systems.
+  displayName: as400rpc-operator
   icon:
   - base64data: ""
     mediatype: ""
@@ -32,10 +32,13 @@ spec:
   keywords:
   - Integration
   links:
-  - name: "1"
-    url: https://1.domain
+  - name: As400rpc Operator
+    url: https://as400rpc-operator.domain
+  maintainers:
+  - email: sergiy.n@openlegacy.com
+    name: SergeN
   maturity: alpha
   provider:
-    name: as400-rpc-operator
-    url: https://www.openlegacy.com/
+    name: Openlegacy
+    url: https://www.openlegacy.com
   version: 0.0.0

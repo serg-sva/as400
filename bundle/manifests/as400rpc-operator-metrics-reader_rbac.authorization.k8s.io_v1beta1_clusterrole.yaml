@@ -1,8 +1,8 @@
-apiVersion: rbac.authorization.k8s.io/v1
+apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
   creationTimestamp: null
-  name: 1-metrics-reader
+  name: as400rpc-operator-metrics-reader
 rules:
 - nonResourceURLs:
   - /metrics

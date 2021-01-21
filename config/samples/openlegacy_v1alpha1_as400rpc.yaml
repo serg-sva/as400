@@ -1,9 +1,9 @@
 apiVersion: openlegacy.com/v1alpha1
-kind: As400-rpc
+kind: As400rpc
 metadata:
-  name: as400-rpc-sample
+  name: as400rpc-sample
 spec:
-  # Default values copied from <project_dir>/helm-charts/as400-rpc/values.yaml
+  # Default values copied from <project_dir>/helm-charts/as400rpc/values.yaml
   affinity: {}
   autoscaling:
     enabled: false

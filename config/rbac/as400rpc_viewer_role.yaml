@@ -1,24 +1,20 @@
-# permissions for end users to edit as400-rpcs.
+# permissions for end users to view as400rpcs.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: as400-rpc-editor-role
+  name: as400rpc-viewer-role
 rules:
 - apiGroups:
   - openlegacy.com
   resources:
-  - as400-rpcs
+  - as400rpcs
   verbs:
-  - create
-  - delete
   - get
   - list
-  - patch
-  - update
   - watch
 - apiGroups:
   - openlegacy.com
   resources:
-  - as400-rpcs/status
+  - as400rpcs/status
   verbs:
   - get

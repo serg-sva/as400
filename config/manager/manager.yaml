@@ -26,7 +26,7 @@ spec:
       - image: controller:latest
         args:
         - "--enable-leader-election"
-        - "--leader-election-id=1"
+        - "--leader-election-id=nginx-operator"
         name: manager
         resources:
           limits:
@@ -40,7 +40,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wordpress-operator
+  name: as400rpc-operator
 spec:
   replicas: 1
   selector:
@@ -55,7 +55,7 @@ spec:
       containers:
         - name: as400rpc-operator
           # Replace this with the built image name
-          image: registry.connect.redhat.com/openlegacy-corp/nocode:latest
+          image: quay.io/sergsva/as400rpc:v0.0.1
           imagePullPolicy: Always
           env:
             - name: WATCH_NAMESPACE
@@ -68,5 +68,5 @@ spec:
                   fieldPath: metadata.name
             - name: OPERATOR_NAME
               value: "as400rpc-operator"
-            - name: RELATED_IMAGE_AS400_RPC
+            - name: RELATED_IMAGE_AS400RPC
               value: registry.connect.redhat.com/openlegacy-corp/nocode:latest

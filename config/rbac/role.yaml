@@ -29,14 +29,13 @@ rules:
   - create
 
 ##
-## Rules for openlegacy.com/v1alpha1, Kind: As400-rpc
+## Rules for openlegacy.com/v1alpha1, Kind: As400rpc
 ##
 - apiGroups:
   - openlegacy.com
   resources:
-  - as400-rpcs
-  - as400-rpcs/status
-  - as400-rpcs/finalizers
+  - as400rpcs
+  - as400rpcs/status
   verbs:
   - create
   - delete

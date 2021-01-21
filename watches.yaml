@@ -1,8 +1,8 @@
 # Use the 'create api' subcommand to add watches to this file.
 - group: openlegacy.com
   version: v1alpha1
-  kind: As400-rpc
-  chart: helm-charts/as400-rpc
+  kind: As400rpc
+  chart: helm-charts/as400rpc
   overrideValues:    
-    image.image: $RELATED_IMAGE_AS400_RPC
+    image.image: $RELATED_IMAGE_AS400RPC
 # +kubebuilder:scaffold:watch

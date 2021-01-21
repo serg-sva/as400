@@ -1,16 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "as400-rpc.fullname" . }}
+  name: {{ include "as400rpc.fullname" . }}
   labels:
-    {{- include "as400-rpc.labels" . | nindent 4 }}
+    {{- include "as400rpc.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
+    - port: 8080
       targetPort: 8080
       protocol: TCP
-      name: app
+      name: as400rpc-port
   selector:
-    component: {{ include "as400-rpc.fullname" . }}
-    {{- include "as400-rpc.selectorLabels" . | nindent 4 }}
+    {{- include "as400rpc.selectorLabels" . | nindent 4 }}

@@ -1,24 +1,24 @@
-# Default values for ol-runtime.
+# Default values for provision.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
-image:
-  repository:  registry.connect.redhat.com/openlegacy-corp/nocode
+#image:
+#  repository: registry.connect.redhat.com/openlegacy-corp/nocode
+  image: registry.connect.redhat.com/openlegacy-corp/nocode:latest
   pullPolicy: IfNotPresent
+#  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+#  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-
-
 serviceAccount:
   # Specifies whether a service account should be created
-  create: false
+  create: true
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
@@ -44,31 +44,18 @@ service:
 
 ingress:
   enabled: false
-  annotations: 
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/client-body-buffer-size: 32m
-    nginx.ingress.kubernetes.io/proxy-body-size: 32m
-    nginx.ingress.kubernetes.io/proxy-connect-timeout: 60s
-    nginx.ingress.kubernetes.io/proxy-read-timeout: 60s
-    nginx.ingress.kubernetes.io/proxy-send-timeout: 60s
-    ingress.kubernetes.io/proxy-body-size: 5g
-    nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS, PATCH, DELETE"
-    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: openlegacy.com
-      paths: 
-      - /
+    - host: chart-example.local
+      paths: []
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
 
 envData: {}
-    
-  # OL_AWS_REGION: "us-east-1"
-  # OL_DEFAULT_EKS_CLUSTER_URL: ""
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -85,10 +72,12 @@ resources: {}
 autoscaling:
   enabled: false
   minReplicas: 1
-  maxReplicas: 100
+  maxReplicas: 3
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-affinity: {}
+nodeSelector:  {}
 
-tolerations: {}
+tolerations: []
+
+affinity: {}

@@ -6,9 +6,9 @@ metadata:
       [
         {
           "apiVersion": "openlegacy.com/v1alpha1",
-          "kind": "As400-rpc",
+          "kind": "As400rpc",
           "metadata": {
-            "name": "as400-rpc-sample"
+            "name": "as400rpc-sample"
           },
           "spec": {
             "affinity": {},
@@ -21,7 +21,7 @@ metadata:
             "fullnameOverride": "",
             "image": {
               "pullPolicy": "IfNotPresent",
-              "repository": "none",
+              "repository": "nginx",
               "tag": ""
             },
             "imagePullSecrets": [],
@@ -58,29 +58,31 @@ metadata:
       ]
     capabilities: Basic Install
     categories: "Integration"
-    description: "OpenLegacy no-code application that allows simple configuration-based integration to AS/400 systems."
-    containerImage: scan.connect.redhat.com/ospid-dd81888f-3826-40a2-a8eb-53f1561910d4/as400rpc-operator:latest
-    createdAt: 2021-01-20T22:33:59Z
-    support: Red Hat Connect Team
+    description: "This image contains an OpenLegacy no-code application that allows simple configuration-based integration to AS/400 systems."
+    containerImage: quay.io/sergsva/as400rpc:v0.0.1
+    createdAt: 2021-01-21T12:59:59Z
+    support: Openlegacy
     operators.operatorframework.io/builder: operator-sdk-v1.0.0
     operators.operatorframework.io/project_layout: helm.sdk.operatorframework.io/v1
-  name: 1.v0.0.1
+  name: as400rpc-operator.v0.0.1
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
   customresourcedefinitions:
     owned:
-    - kind: As400-rpc
-      name: as400-rpcs.openlegacy.com
+    - kind: As400rpc
+      name: as400rpcs.openlegacy.com
       version: v1alpha1
-  description: OpenLegacy no-code application that allows simple configuration-based integration to AS/400 systems.
-  displayName: as400-rpc-operator
+  description: no-code application that allows simple configuration-based integration to AS/400 systems.
+  displayName: as400rpc-operator
   icon:
   - base64data: "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMi4wLjEsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNjYuMyAyNTQuNyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjY2LjMgMjU0Ljc7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtmaWxsOiNFQzFDMjQ7fQ0KCS5zdDF7ZmlsbDojRjk5NDAzO30NCgkuc3Qye2ZpbGw6I0Y5NTAxMTt9DQo8L3N0eWxlPg0KPHJlY3QgeD0iMTQyLjUiIHk9Ijg5LjkiIGNsYXNzPSJzdDAiIHdpZHRoPSIzMC4yIiBoZWlnaHQ9IjMwLjIiLz4NCjxyZWN0IHg9IjE3Mi40IiB5PSI4OS45IiBjbGFzcz0ic3QxIiB3aWR0aD0iMzAuMiIgaGVpZ2h0PSIzMC4yIi8+DQo8cmVjdCB4PSIxNDIuNSIgeT0iNTkuOCIgY2xhc3M9InN0MiIgd2lkdGg9IjMwLjIiIGhlaWdodD0iMzAuMiIvPg0KPHJlY3QgeD0iMjAyLjMiIHk9IjU5LjgiIGNsYXNzPSJzdDAiIHdpZHRoPSIzMC4yIiBoZWlnaHQ9IjMwLjIiLz4NCjxyZWN0IHg9IjE3Mi40IiB5PSIyOS45IiBjbGFzcz0ic3QyIiB3aWR0aD0iMzAuMiIgaGVpZ2h0PSIzMC4yIi8+DQo8cmVjdCB4PSIyMDIuMyIgY2xhc3M9InN0MiIgd2lkdGg9IjMwLjIiIGhlaWdodD0iMzAuMiIvPg0KPHJlY3QgeD0iMjUwLjMiIHk9Ijc0IiBjbGFzcz0ic3QyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4NCjxyZWN0IHg9IjExMS4zIiB5PSI1OS44IiBjbGFzcz0ic3QxIiB3aWR0aD0iMTQuNiIgaGVpZ2h0PSIxNC42Ii8+DQo8cGF0aCBjbGFzcz0ic3QyIiBkPSJNMTguNSw5NS4xaDEwMC42djI1SDM3LjdjLTcsMC0xMi43LDUuNy0xMi43LDEyLjdWMjE3YzAsNyw1LjcsMTIuNywxMi43LDEyLjdoODQuMmM3LDAsMTIuNy01LjcsMTIuNy0xMi43di03Ng0KCWgyNXY5NS4yYzAsMTAuMi04LjMsMTguNS0xOC41LDE4LjVIMTguNUM4LjMsMjU0LjcsMCwyNDYuNCwwLDIzNi4yVjExMy42QzAsMTAzLjQsOC4zLDk1LjEsMTguNSw5NS4xIi8+DQo8L3N2Zz4NCg=="
     mediatype: "image/svg+xml"
   install:
     spec:
       clusterPermissions:
+      - rules: null
+        serviceAccountName: as400rpc-operator
       - rules:
         - apiGroups:
           - ""
@@ -103,9 +105,8 @@ spec:
         - apiGroups:
           - openlegacy.com
           resources:
-          - as400-rpcs
-          - as400-rpcs/status
-          - as400-rpcs/finalizers
+          - as400rpcs
+          - as400rpcs/status
           verbs:
           - create
           - delete
@@ -140,39 +141,8 @@ spec:
           verbs:
           - create
         serviceAccountName: default
-      - rules: null
-        serviceAccountName: as400rpc-operator
       deployments:
-      - name: as400rpc-controller-manager
-        spec:
-          replicas: 1
-          selector:
-            matchLabels:
-              control-plane: controller-manager
-          strategy: {}
-          template:
-            metadata:
-              labels:
-                control-plane: controller-manager
-            spec:
-              containers:
-              - image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:latest
-                name: kube-rbac-proxy
-                resources: {}
-              - args:
-                - --enable-leader-election
-                - --leader-election-id=1
-                image: controller:latest
-                name: manager
-                resources:
-                  limits:
-                    cpu: 100m
-                    memory: 90Mi
-                  requests:
-                    cpu: 100m
-                    memory: 60Mi
-              terminationGracePeriodSeconds: 10
-      - name: as400-rpc-operator
+      - name: as400rpc-operator-as400rpc-operator
         spec:
           replicas: 1
           selector:
@@ -196,14 +166,45 @@ spec:
                       fieldPath: metadata.name
                 - name: OPERATOR_NAME
                   value: as400rpc-operator
-                - name: RELATED_IMAGE_AS400_RPC
+                - name: RELATED_IMAGE_AS400RPC
                   value: registry.connect.redhat.com/openlegacy-corp/nocode:latest
-                image: registry.connect.redhat.com/openlegacy-corp/nocode:latest
+                image: quay.io/sergsva/as400rpc:v0.0.1
                 imagePullPolicy: Always
                 name: as400rpc-operator
                 resources: {}
               serviceAccountName: as400rpc-operator
+      - name: as400rpc-operator-controller-manager
+        spec:
+          replicas: 1
+          selector:
+            matchLabels:
+              control-plane: controller-manager
+          strategy: {}
+          template:
+            metadata:
+              labels:
+                control-plane: controller-manager
+            spec:
+              containers:
+              - image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:latest
+                name: kube-rbac-proxy
+                resources: {}
+              - args:
+                - --enable-leader-election
+                - --leader-election-id=nginx-operator
+                image: controller:latest
+                name: manager
+                resources:
+                  limits:
+                    cpu: 100m
+                    memory: 90Mi
+                  requests:
+                    cpu: 100m
+                    memory: 60Mi
+              terminationGracePeriodSeconds: 10
       permissions:
+      - rules: null
+        serviceAccountName: as400rpc-operator
       - rules:
         - apiGroups:
           - ""
@@ -225,8 +226,6 @@ spec:
           - create
           - patch
         serviceAccountName: default
-      - rules: null
-        serviceAccountName: as400rpc-operator
     strategy: deployment
   installModes:
   - supported: true
@@ -240,11 +239,13 @@ spec:
   keywords:
   - Integration
   links:
-  - name: "1"
-    url: https://1.domain
+  - name: As400rpc Operator
+    url: https://www.openlegacy.com
+  maintainers:
+  - email: sergiy.n@openlegacy.com
   maturity: alpha
   provider:
-    name: OpenLegacy
-    url: https://www.openlegacy.com/
+    name: Openlegacy
+    url: https://www.openlegacy.com
   version: 0.0.1
 
