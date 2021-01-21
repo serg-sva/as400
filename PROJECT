@@ -1,0 +1,8 @@
+domain: com
+layout: helm.sdk.operatorframework.io/v1
+projectName: "1"
+resources:
+- group: openlegacy
+  kind: As400-rpc
+  version: v1alpha1
+version: 3-alpha

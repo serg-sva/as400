@@ -1,0 +1,41 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: '[]'
+    capabilities: Basic Install
+    operators.operatorframework.io/builder: operator-sdk-v1.0.0
+    operators.operatorframework.io/project_layout: helm.sdk.operatorframework.io/v1
+  name: 1.vX.Y.Z
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions: {}
+  description: OpenLegacy no-code application that allows simple configuration-based integration to AS/400 systems.
+  displayName: as400-rpc-operator
+  icon:
+  - base64data: ""
+    mediatype: ""
+  install:
+    spec:
+      deployments: null
+    strategy: ""
+  installModes:
+  - supported: true
+    type: OwnNamespace
+  - supported: true
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - Integration
+  links:
+  - name: "1"
+    url: https://1.domain
+  maturity: alpha
+  provider:
+    name: as400-rpc-operator
+    url: https://www.openlegacy.com/
+  version: 0.0.0

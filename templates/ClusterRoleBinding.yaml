@@ -1,0 +1,14 @@
+{{- if .Values.serviceAccount.create -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ .Chart.Name }}-{{ .Release.Namespace }}-cluster-role-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view
+subjects:
+- kind: ServiceAccount
+  name: {{ include "as400-rpc.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+{{- end -}}

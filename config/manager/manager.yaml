@@ -1,0 +1,72 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    control-plane: controller-manager
+  name: system
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: controller-manager
+  namespace: system
+  labels:
+    control-plane: controller-manager
+spec:
+  selector:
+    matchLabels:
+      control-plane: controller-manager
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        control-plane: controller-manager
+    spec:
+      containers:
+      - image: controller:latest
+        args:
+        - "--enable-leader-election"
+        - "--leader-election-id=1"
+        name: manager
+        resources:
+          limits:
+            cpu: 100m
+            memory: 90Mi
+          requests:
+            cpu: 100m
+            memory: 60Mi
+      terminationGracePeriodSeconds: 10
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: as400rpc-operator
+  template:
+    metadata:
+      labels:
+        name: as400rpc-operator
+    spec:
+      serviceAccountName: as400rpc-operator
+      containers:
+        - name: as400rpc-operator
+          # Replace this with the built image name
+          image: registry.connect.redhat.com/openlegacy-corp/nocode:latest
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "as400rpc-operator"
+            - name: RELATED_IMAGE_AS400_RPC
+              value: registry.connect.redhat.com/openlegacy-corp/nocode:latest
