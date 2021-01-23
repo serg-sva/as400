@@ -6,8 +6,8 @@ replicaCount: 1
 
 #image:
 #  repository: registry.connect.redhat.com/openlegacy-corp/nocode
-  image: registry.connect.redhat.com/openlegacy-corp/nocode:latest
-  pullPolicy: IfNotPresent
+image: registry.connect.redhat.com/openlegacy-corp/nocode:latest
+pullPolicy: IfNotPresent
 #  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
 #  tag: "latest"

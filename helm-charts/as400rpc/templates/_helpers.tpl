@@ -61,3 +61,11 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{/*
+Environment Secret name
+*/}}
+{{- define "as400rpc.envSecretName" -}}
+    {{ printf "%s-%s" .Chart.Name .Release.Namespace }}
+{{- end -}}
+

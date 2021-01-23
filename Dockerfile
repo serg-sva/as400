@@ -1,5 +1,5 @@
 # Build the manager binary
-FROM quay.io/operator-framework/helm-operator:v1.0.0
+FROM quay.io/operator-framework/helm-operator:v1.3.0
 
 ### Required OpenShift Labels
 LABEL name="As400rpc Operator" \
@@ -7,7 +7,7 @@ LABEL name="As400rpc Operator" \
       version="v0.0.1" \
       release="1" \
       summary="This is a tech preview of an as400rpc helm operator." \
-      description="This operator will deploy as400rpc to the cluster."
+      description="This operator will deploy as400rpc-operator to the cluster."
 
 # Required Licenses
 COPY licenses /licenses

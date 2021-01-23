@@ -1,6 +1,6 @@
 domain: com
 layout: helm.sdk.operatorframework.io/v1
-projectName: "as400rpc-operator"
+projectName: as400rpc-operator
 resources:
 - group: openlegacy
   kind: As400rpc

@@ -8,38 +8,6 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: controller-manager
-  namespace: system
-  labels:
-    control-plane: controller-manager
-spec:
-  selector:
-    matchLabels:
-      control-plane: controller-manager
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        control-plane: controller-manager
-    spec:
-      containers:
-      - image: controller:latest
-        args:
-        - "--enable-leader-election"
-        - "--leader-election-id=nginx-operator"
-        name: manager
-        resources:
-          limits:
-            cpu: 100m
-            memory: 90Mi
-          requests:
-            cpu: 100m
-            memory: 60Mi
-      terminationGracePeriodSeconds: 10
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
   name: as400rpc-operator
 spec:
   replicas: 1
@@ -55,7 +23,7 @@ spec:
       containers:
         - name: as400rpc-operator
           # Replace this with the built image name
-          image: quay.io/sergsva/as400rpc:v0.0.1
+          image: scan.connect.redhat.com/ospid-d0096ed8-3fd7-4664-8ead-2e8ba00e464c/as400rpc-operator:latest
           imagePullPolicy: Always
           env:
             - name: WATCH_NAMESPACE
